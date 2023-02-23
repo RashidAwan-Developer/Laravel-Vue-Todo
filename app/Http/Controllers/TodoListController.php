@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Todo\TodoShowResource;
 use App\Models\TodoList;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class TodoListController extends Controller
      */
     public function index()
     {
-        $list = TodoList::latest()->get();
+        $list = TodoShowResource::collection(TodoList::latest()->get());
         return $list;
     }
 
